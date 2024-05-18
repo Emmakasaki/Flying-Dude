@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbeoj7lgp6jga"]
+
+[ext_resource type="Script" path="res://src/scripts/main.gd" id="1_bsyoc"]
+[ext_resource type="Texture2D" uid="uid://cvs8t4pk8ldb1" path="res://assets/bg.png" id="1_cqql6"]
+[ext_resource type="PackedScene" uid="uid://cma46p7ydtiwy" path="res://src/scenes/pipe.tscn" id="2_7tr3h"]
+[ext_resource type="PackedScene" uid="uid://dbr06r0umtfb5" path="res://src/scenes/player.tscn" id="2_g0ikv"]
+[ext_resource type="PackedScene" uid="uid://3e87mvt4gxx1" path="res://src/scenes/ground.tscn" id="4_42ub0"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_bsyoc")
+pipeScene = ExtResource("2_7tr3h")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(432, 395)
+scale = Vector2(1, 1.02865)
+texture = ExtResource("1_cqql6")
+
+[node name="Player" parent="." instance=ExtResource("2_g0ikv")]
+
+[node name="Ground" parent="." instance=ExtResource("4_42ub0")]
+z_index = 1
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_right = 30.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+
+[node name="ScoreLabel2" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_top = 286.0
+offset_right = 111.0
+offset_bottom = 341.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Score: 0"
+
+[node name="Button" type="Button" parent="."]
+z_index = 1
+offset_left = 371.0
+offset_top = 380.0
+offset_right = 519.0
+offset_bottom = 443.0
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
+[node name="HighScore" type="Label" parent="."]
+z_index = 1
+offset_left = 320.0
+offset_top = 328.0
+offset_right = 545.0
+offset_bottom = 383.0
+theme_override_font_sizes/font_size = 30
+text = "High Score: "
+
+[connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
