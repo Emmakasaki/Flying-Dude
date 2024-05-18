@@ -18,6 +18,9 @@ The game is controlled by several scripts:
 # How to Run
 To run this project, you will need to have Godot installed. Open the project in Godot, and press the "Play" button.
 
+You can also play it by either playing it on the browser or downloading the file at my itch.io page for it:
+[Flying Dude](https://emmakasaki.itch.io/flying-dude)
+
 # Contributing
 Contributions are welcome! Please feel free to submit a pull request.
 
